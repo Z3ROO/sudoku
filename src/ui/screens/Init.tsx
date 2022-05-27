@@ -127,13 +127,7 @@ function Difficulty(props: DefaultProps) {
   const {controller} = props;
   const [buttonFocused, setButtonFocused] = useState(1);
 
-  function start(diff:number){
-    console.log(diff)
-    controller.startGame(diff)
-  }
-
   useEffect(() => {
-    console.log('asdasdasdasdasd',controller.startGame)
     const navigateThroughDifficulties = (key: KeyboardEvent) => {
       if (key.code === 'ArrowRight'){
         setButtonFocused((buttonFocused) => buttonFocused === 4 ? 1 : buttonFocused+1);
@@ -142,7 +136,7 @@ function Difficulty(props: DefaultProps) {
         setButtonFocused((buttonFocused) => buttonFocused === 1 ? 4 : buttonFocused-1);
       }
       else if (key.code === 'Enter'){
-        start(buttonFocused)
+        controller.startGame(buttonFocused)
       } 
     }
     
@@ -154,12 +148,12 @@ function Difficulty(props: DefaultProps) {
   }, [buttonFocused])
 
   return  <Difficulty_css buttonFocused={buttonFocused}>
-            <h2>Escolha a dificuldade</h2>
+            <h2>Select the difficulty:</h2>
             <div>
-              <button className='pixel-btn' onClick={()=> controller.startGame(1)} onMouseOver={() => setButtonFocused(1)}>Facil</button>
-              <button className='pixel-btn' onClick={()=> controller.startGame(2)} onMouseOver={() => setButtonFocused(2)}>Medio</button>
-              <button className='pixel-btn' onClick={()=> controller.startGame(3)} onMouseOver={() => setButtonFocused(3)}>Dificil</button>
-              <button className='pixel-btn' onClick={()=> controller.startGame(4)} onMouseOver={() => setButtonFocused(4)}>Especialista</button>
+              <button className='pixel-btn' onClick={()=> controller.startGame(1)} onMouseOver={() => setButtonFocused(1)}>Easy</button>
+              <button className='pixel-btn' onClick={()=> controller.startGame(2)} onMouseOver={() => setButtonFocused(2)}>Medium</button>
+              <button className='pixel-btn' onClick={()=> controller.startGame(3)} onMouseOver={() => setButtonFocused(3)}>Hard</button>
+              <button className='pixel-btn' onClick={()=> controller.startGame(4)} onMouseOver={() => setButtonFocused(4)}>Expert</button>
             </div>            
           </Difficulty_css>
 }

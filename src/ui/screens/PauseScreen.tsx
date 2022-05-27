@@ -28,7 +28,7 @@ export function PauseScreen(props: DefaultProps) {
   const { controller } = props;
 
   return  <PauseScreen_css>
-            <h3>Jogo pausado</h3>
-            <button onClick={() => controller.pauseGame()}>Voltar para o jogo</button>
+            <h3>Paused</h3>
+            <button onClick={() => controller.pauseGame()}>Back to the game</button>
           </PauseScreen_css>
 }
