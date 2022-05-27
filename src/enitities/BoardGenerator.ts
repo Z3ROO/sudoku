@@ -1,12 +1,11 @@
-export class Board {
-  private board: number[][];
+export class BoardGenerator {
+  public board: number[][];
   public finalBoard: number[][] = [];
 
   constructor () {
     this.board = new Array(9).fill([]);
 
     this.createBoard()
-    this.finalBoard = this.board
   }
 
   private createBoard(): void {

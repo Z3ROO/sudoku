@@ -1,11 +1,11 @@
 import { parse } from 'path';
-import { Board } from './BoardGenerator'
+import { BoardGenerator } from './BoardGenerator'
 
 export type BoardCel = {num:number|null, state: string, notes: number[]}
 type UpdateCelBody = {num?:number|null, state?: string, notes?: number | number[]};
 
 export class Sudoku {
-  #originalBoard: Board;
+  #originalBoard: BoardGenerator;
   board: BoardCel[][];
   difficulty: number;
   #history: BoardCel[][][];
@@ -13,7 +13,7 @@ export class Sudoku {
   timer: number;
 
   constructor (difficulty: number) {
-    this.#originalBoard = new Board();
+    this.#originalBoard = new BoardGenerator();
     this.board = [];
     this.difficulty = difficulty;
     this.timer = 0;
@@ -25,7 +25,7 @@ export class Sudoku {
   }
 
   #buildBoard(difficulty: number): void {
-    const board = this.#originalBoard.finalBoard.map(
+    const board = this.#originalBoard.board.map(
       box => box.map(
         cel => {
           const percentage = Math.ceil(Math.random()*81) < 32 + difficulty*5
