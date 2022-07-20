@@ -1,4 +1,3 @@
-import { parse } from 'path';
 import { BoardGenerator } from './BoardGenerator'
 
 export type BoardCel = {num:number|null, state: string, notes: number[]}
