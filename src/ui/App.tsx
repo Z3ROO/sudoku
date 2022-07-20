@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { InitComponent } from './screens/Init';
+import { StartScreen } from './screens/Start';
 import { InGame } from './screens/InGame'
 import { GameState } from './util/interfaces';
 import { EndScreen } from './screens/End';
@@ -24,7 +24,7 @@ function App(): JSX.Element {
   function content(gameState: GameState) {
     switch(gameState) {
       case 'init':
-        return <InitComponent controller={controller}/>
+        return <StartScreen controller={controller}/>
       case 'in-game':
         return <InGame controller={controller}/>
       case 'paused':

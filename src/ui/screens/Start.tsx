@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DefaultProps } from '../util/interfaces';
 import * as colors from '../util/colors';
 
-const InitComponent_css = styled.div`
+const StartScreen_css = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -158,11 +158,11 @@ function Difficulty(props: DefaultProps) {
           </Difficulty_css>
 }
 
-export function InitComponent(props:DefaultProps): JSX.Element {
+export function StartScreen(props:DefaultProps): JSX.Element {
   const controller = props.controller;
   const [screen, setScreen] = useState<string>('start');
   
-  return  <InitComponent_css>
+  return  <StartScreen_css>
             <div className='title'>
               <h1>Sudoku.js</h1>
             </div>          
@@ -171,5 +171,5 @@ export function InitComponent(props:DefaultProps): JSX.Element {
               {screen === 'start' ? <Start setScreen={setScreen}/> :<Difficulty controller={controller} />}
             </div>
             <span className='bottom-phrase'>2022 - Z3ROO</span>
-          </InitComponent_css>
+          </StartScreen_css>
 }
