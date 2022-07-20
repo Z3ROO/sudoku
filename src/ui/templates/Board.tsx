@@ -79,8 +79,6 @@ const CelNotes_css = styled.div`
 const Board_css = styled.div`
   `
 
-
-
 interface CelProps extends DefaultProps{
   id :number;
   boxId :number;
@@ -199,8 +197,8 @@ export function Box(props: BoxProps) {
 
   return  <Box_css id={'box-'+id}>
             {
-              [0,3,6].map(row => <div>{
-                  [1,2,3].map(column => <Cel id={row+column} boxId={id} controller={controller} />)
+              [0,3,6].map((row, rowIndex) => <div key={rowIndex}>{
+                  [1,2,3].map((column,  columnIndex) => <Cel id={row+column} key={rowIndex+columnIndex} boxId={id} controller={controller} />)
                 }</div>
                 )
             }         
@@ -212,8 +210,8 @@ export function Grid(props: DefaultProps) {
 
   return  <Grid_css>
             {
-              [0,3,6].map(row => <div>{
-                  [1,2,3].map(column => <Box id={row+column} controller={controller} />)
+              [0,3,6].map((row, rowIndex) => <div key={rowIndex}>{
+                  [1,2,3].map((column,  columnIndex) => <Box id={row+column}  key={rowIndex+columnIndex} controller={controller} />)
                 }</div>
                 )
             }         

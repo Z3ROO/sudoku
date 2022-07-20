@@ -72,13 +72,13 @@ function NumPad(props: DefaultProps) {
 
   return  <NumPad_css>
             <div>
-              {[1,2,3].map(num => <NumPadBtn onClick={()=> controller.chooseNumber(num)}>{num}</NumPadBtn>)}
+              {[1,2,3].map(num => <NumPadBtn key={num} onClick={()=> controller.chooseNumber(num)}>{num}</NumPadBtn>)}
             </div>
             <div>
-              {[4,5,6].map(num => <NumPadBtn onClick={()=> controller.chooseNumber(num)}>{num}</NumPadBtn>)}
+              {[4,5,6].map(num => <NumPadBtn key={num} onClick={()=> controller.chooseNumber(num)}>{num}</NumPadBtn>)}
             </div>
             <div>
-              {[7,8,9].map(num => <NumPadBtn onClick={()=> controller.chooseNumber(num)}>{num}</NumPadBtn>)}
+              {[7,8,9].map(num => <NumPadBtn key={num} onClick={()=> controller.chooseNumber(num)}>{num}</NumPadBtn>)}
             </div>
           </NumPad_css>
 }
