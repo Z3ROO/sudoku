@@ -9,18 +9,18 @@ export class Sudoku {
   difficulty: number;
   #history: BoardCel[][][];
   #forwardHistory: BoardCel[][][];
-  timer: number;
+  startTime: number;
 
   constructor (difficulty: number) {
     this.#originalBoard = new BoardGenerator();
     this.board = [];
     this.difficulty = difficulty;
-    this.timer = 0;
 
     this.#history = [];
     this.#forwardHistory = [];
 
     this.#buildBoard(difficulty);
+    this.startTime = Date.now();
   }
 
   #buildBoard(difficulty: number): void {

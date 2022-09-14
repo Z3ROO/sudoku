@@ -1,6 +1,5 @@
 export class BoardGenerator {
   public board: number[][];
-  public finalBoard: number[][] = [];
 
   constructor () {
     this.board = new Array(9).fill([]);

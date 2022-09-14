@@ -29,7 +29,7 @@ export function InGame(props:DefaultProps) {
   const { controller } = props;
 
   useInterval(() => {
-    controller.setInGameTimer((inGameTimer)=> inGameTimer+1);
+    controller.updateTimer();
   }, 1000);
 
   return  <InGame_css>

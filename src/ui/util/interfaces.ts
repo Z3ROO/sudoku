@@ -1,4 +1,4 @@
-import { BoardCel, Sudoku } from "../../enitities/Sudoku";
+import { BoardCel, Sudoku } from "../../lib/Sudoku";
 
 export type GameState = 'in-game' | 'paused' | 'quit' | 'won' | 'init'
 
@@ -19,7 +19,7 @@ export type Controller = {
   quitGame(): void;
   resetAnimationCords(): void;
   inGameTimer: number;
-  setInGameTimer: React.Dispatch<React.SetStateAction<number>>;
+  updateTimer(): void;
   pauseGame(): void;
 }
 

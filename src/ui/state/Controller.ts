@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { BoardCel, Sudoku } from "../../enitities/Sudoku";
+import { BoardCel, Sudoku } from "../../lib/Sudoku";
 import { parsePartialConclusionCordinates } from "../util/animationCordsGenerator";
 import { GameState } from "../util/interfaces";
 
@@ -8,7 +8,7 @@ type NewCelBody = {notes?: number, num?: number, state: string}
 export function Controller() {
   const [gameState, setGameState] = useState<GameState>('init');  // Keeps track of the current state of the game
   const sudoku = useRef<Sudoku | null>();  // Keeps track of the current playable board of the game
-  const [board, setBoard] = useState<BoardCel[][] | null>(null);  // Keeps track of the current playable board of the game
+  const [board, setBoard] = useState<BoardCel[][] | null>(null);  // Keeps track of the current board state
   const [focusedCel, setFocusedCel] = useState<number[]|null>(null);  // Keeps track of the cel clicked/focused
   const [notesMode, setNotesMode] = useState<boolean>(false);  // Keeps track if in notes mode or not
   const [animationCordinates, setAnimationCordinates] = useState<number[][] | null>(null);
@@ -20,9 +20,16 @@ export function Controller() {
     setBoard(sudoku.current.board);
   }
 
+  function updateTimer() {
+
+    setInGameTimer(Date.now() - sudoku.current!.startTime || 0);
+  }
+
   /*public*/function pauseGame(): void {
-    if (gameState === 'paused')
-      setGameState('in-game')
+    if (gameState === 'paused') {
+      setGameState('in-game');
+      sudoku.current!.startTime += (Date.now() - sudoku.current!.startTime)-inGameTimer;
+    }
     else
       setGameState('paused')
   }
@@ -39,34 +46,18 @@ export function Controller() {
   /*private*/function updateBoardCel(number: number): void {
     if (!board || !focusedCel || !sudoku.current) throw new Error("No board or not focused cel to fill");
 
-    //if (isNumberAlreadyInTheCel(number)) return
-
     const [boxPos, celPos] = focusedCel;
 
     let newCelBody:NewCelBody = mountNewCelBody(number);
     sudoku.current.updateCelValue(boxPos-1, celPos-1, newCelBody);
     setBoard(sudoku.current.board);
   }
-  /*private*/function isNumberAlreadyInTheCel(number: number): boolean {
-    if (!board || !focusedCel || !sudoku.current) throw new Error("No board or not focused cel to fill");
-    
-    const [boxPos, celPos] = focusedCel;
-
-    if (notesMode){
-      const isNumberAlreadyChosen = board[boxPos-1][celPos-1].notes.some(val => val === number);
-      if(isNumberAlreadyChosen)
-        return true
-    }
-    else if (board[boxPos-1][celPos-1].num === number && board[boxPos-1][celPos-1].notes === [])
-      return true
-
-    return false
-  }
+  
   /*private*/function mountNewCelBody(number: number): NewCelBody {
     if (notesMode)
       return {notes: number, state: 'notes'};
-    else
-      return {num: number, state: 'guess'};
+    
+    return {num: number, state: 'guess'};
   }
 
   /*private*/function mountCordsForPartialConclusionsAnimation(): void {
@@ -121,8 +112,7 @@ export function Controller() {
 
   /*private*/function finishGame():void {
     if (!sudoku.current) throw new Error('Sudoku object not found');
-    
-    sudoku.current.timer = inGameTimer;
+
     setGameState('won');
   }
 
@@ -162,6 +152,6 @@ export function Controller() {
     quitGame,
     restartGame, 
     resetAnimationCords, 
-    setInGameTimer
+    updateTimer
   }
 }
