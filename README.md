@@ -1,14 +1,27 @@
-## Simple Sudoku Game
+# React + TypeScript + Vite
 
-A simple but very interactive Sudoku game built using Typescript, React and styled components.
- - It includes its own Sudoku Board Generator, so each match is as unique as it can be.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-![Start screen](https://raw.githubusercontent.com/Z3ROO/sudoku/master/_/startScreen.jpg)
-![Difficulty screen](https://raw.githubusercontent.com/Z3ROO/sudoku/master/_/difficultyScreen.jpg)
-![In Game screen](https://raw.githubusercontent.com/Z3ROO/sudoku/master/_/inGameScreen.jpg)
+Currently, two official plugins are available:
 
-> In case you try to run tests in the board generator be aware of the amount of boards being tested. It is currently 1000 boards and it can take a while.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-**To run:**
-- npm install
-- npm start
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
