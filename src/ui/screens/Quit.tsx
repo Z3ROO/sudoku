@@ -1,6 +1,5 @@
 import { DefaultProps } from "../util/interfaces";
 import styled from "styled-components";
-import { Controller } from "../state/Controller";
 
 const QuitScreen_css = styled.div`
     display: flex;

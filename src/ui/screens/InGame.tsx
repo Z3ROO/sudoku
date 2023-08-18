@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { DefaultProps } from '../util/interfaces';
 import { Board } from '../templates/Board';
 import { Controls } from '../templates/Controls';
-import { useEffect } from 'react';
 import { useInterval } from '../util/hooks/useInterval';
 import * as colors from '../util/colors';
 

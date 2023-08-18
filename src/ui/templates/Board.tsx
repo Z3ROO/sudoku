@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Controller, DefaultProps } from "../util/interfaces"
+import { DefaultProps } from "../util/interfaces"
 import * as colors from '../util/colors';
 
 const Cel_css = styled.div<{id: string, isCelFocused: number, celCurrentState: string, animationOrder: number}>`

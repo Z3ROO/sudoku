@@ -1,4 +1,4 @@
-import { BoardCel, Sudoku } from "../../lib/Sudoku";
+import { BoardCel } from "../../lib/Sudoku";
 
 export type GameState = 'in-game' | 'paused' | 'quit' | 'won' | 'init'
 

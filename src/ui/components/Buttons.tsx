@@ -74,7 +74,7 @@ const IconBtn_css = styled.button<{iconSize:number, icon: string, hover?: string
 type IconBtn = {icon: string, action: any, size: number, alt?: string, hover?: string, active?: boolean}
 
 export function IconBtn(props: IconBtn) {
-  const { icon, action, size, alt, hover, active} = props;
+  const { icon, action, size, /*alt,*/ hover, active} = props;
 
   return  <IconBtn_css onClick={action} iconSize={size} icon={icon} hover={hover} active={active}>
             <div/>
