@@ -1,6 +1,7 @@
 import { BoardGenerator } from './BoardGenerator'
+export function ignore(_description: string, _code: () => void) {}
 
-const boards: BoardGenerator[] = Array(10).fill(undefined).map(arr => new BoardGenerator());
+const boards: BoardGenerator[] = Array(1000).fill(undefined).map(() => new BoardGenerator());
 console.log(boards[0].board)
 describe('Board', () => {
   test('The Board has 9 Boxes completely filled with 9 positions', () => {
@@ -161,9 +162,9 @@ describe('Columns', () => {
   test('The 1st column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[0].filter((cel, index) => index === 0 || index === 3 || index === 6),
-        ...board.board[3].filter((cel, index) => index === 0 || index === 3 || index === 6),
-        ...board.board[6].filter((cel, index) => index === 0 || index === 3 || index === 6)
+        ...board.board[0].filter((_cel, index) => index === 0 || index === 3 || index === 6),
+        ...board.board[3].filter((_cel, index) => index === 0 || index === 3 || index === 6),
+        ...board.board[6].filter((_cel, index) => index === 0 || index === 3 || index === 6)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -174,9 +175,9 @@ describe('Columns', () => {
   test('The 2nd column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[0].filter((cel, index) => index === 1 || index === 4 || index === 7),
-        ...board.board[3].filter((cel, index) => index === 1 || index === 4 || index === 7),
-        ...board.board[6].filter((cel, index) => index === 1 || index === 4 || index === 7)
+        ...board.board[0].filter((_cel, index) => index === 1 || index === 4 || index === 7),
+        ...board.board[3].filter((_cel, index) => index === 1 || index === 4 || index === 7),
+        ...board.board[6].filter((_cel, index) => index === 1 || index === 4 || index === 7)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -187,9 +188,9 @@ describe('Columns', () => {
   test('The 3rd column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[0].filter((cel, index) => index === 2 || index === 5 || index === 8),
-        ...board.board[3].filter((cel, index) => index === 2 || index === 5 || index === 8),
-        ...board.board[6].filter((cel, index) => index === 2 || index === 5 || index === 8)
+        ...board.board[0].filter((_cel, index) => index === 2 || index === 5 || index === 8),
+        ...board.board[3].filter((_cel, index) => index === 2 || index === 5 || index === 8),
+        ...board.board[6].filter((_cel, index) => index === 2 || index === 5 || index === 8)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -200,9 +201,9 @@ describe('Columns', () => {
   test('The 4th column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[1].filter((cel, index) => index === 0 || index === 3 || index === 6),
-        ...board.board[4].filter((cel, index) => index === 0 || index === 3 || index === 6),
-        ...board.board[7].filter((cel, index) => index === 0 || index === 3 || index === 6)
+        ...board.board[1].filter((_cel, index) => index === 0 || index === 3 || index === 6),
+        ...board.board[4].filter((_cel, index) => index === 0 || index === 3 || index === 6),
+        ...board.board[7].filter((_cel, index) => index === 0 || index === 3 || index === 6)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -213,9 +214,9 @@ describe('Columns', () => {
   test('The 5th column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[1].filter((cel, index) => index === 1 || index === 4 || index === 7),
-        ...board.board[4].filter((cel, index) => index === 1 || index === 4 || index === 7),
-        ...board.board[7].filter((cel, index) => index === 1 || index === 4 || index === 7)
+        ...board.board[1].filter((_cel, index) => index === 1 || index === 4 || index === 7),
+        ...board.board[4].filter((_cel, index) => index === 1 || index === 4 || index === 7),
+        ...board.board[7].filter((_cel, index) => index === 1 || index === 4 || index === 7)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -226,9 +227,9 @@ describe('Columns', () => {
   test('The 6th column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[1].filter((cel, index) => index === 2 || index === 5 || index === 8),
-        ...board.board[4].filter((cel, index) => index === 2 || index === 5 || index === 8),
-        ...board.board[7].filter((cel, index) => index === 2 || index === 5 || index === 8)
+        ...board.board[1].filter((_cel, index) => index === 2 || index === 5 || index === 8),
+        ...board.board[4].filter((_cel, index) => index === 2 || index === 5 || index === 8),
+        ...board.board[7].filter((_cel, index) => index === 2 || index === 5 || index === 8)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -239,9 +240,9 @@ describe('Columns', () => {
   test('The 7th column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[2].filter((cel, index) => index === 0 || index === 3 || index === 6),
-        ...board.board[5].filter((cel, index) => index === 0 || index === 3 || index === 6),
-        ...board.board[8].filter((cel, index) => index === 0 || index === 3 || index === 6)
+        ...board.board[2].filter((_cel, index) => index === 0 || index === 3 || index === 6),
+        ...board.board[5].filter((_cel, index) => index === 0 || index === 3 || index === 6),
+        ...board.board[8].filter((_cel, index) => index === 0 || index === 3 || index === 6)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -252,9 +253,9 @@ describe('Columns', () => {
   test('The 8th column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[2].filter((cel, index) => index === 1 || index === 4 || index === 7),
-        ...board.board[5].filter((cel, index) => index === 1 || index === 4 || index === 7),
-        ...board.board[8].filter((cel, index) => index === 1 || index === 4 || index === 7)
+        ...board.board[2].filter((_cel, index) => index === 1 || index === 4 || index === 7),
+        ...board.board[5].filter((_cel, index) => index === 1 || index === 4 || index === 7),
+        ...board.board[8].filter((_cel, index) => index === 1 || index === 4 || index === 7)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))
@@ -265,9 +266,9 @@ describe('Columns', () => {
   test('The 9th column has 9 unice cells', () => {
     const AllBoardsComply = boards.every( board => {
       const column = [
-        ...board.board[2].filter((cel, index) => index === 2 || index === 5 || index === 8),
-        ...board.board[5].filter((cel, index) => index === 2 || index === 5 || index === 8),
-        ...board.board[8].filter((cel, index) => index === 2 || index === 5 || index === 8)
+        ...board.board[2].filter((_cel, index) => index === 2 || index === 5 || index === 8),
+        ...board.board[5].filter((_cel, index) => index === 2 || index === 5 || index === 8),
+        ...board.board[8].filter((_cel, index) => index === 2 || index === 5 || index === 8)
       ]
 
       return  [1,2,3,4,5,6,7,8,9].every( num => column.includes(num))

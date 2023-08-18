@@ -60,19 +60,6 @@ export function Controller() {
     return {num: number, state: 'guess'};
   }
 
-  /*private*/function mountCordsForPartialConclusionsAnimation(): void {
-    if (!focusedCel || !sudoku.current) throw new Error("No board or not focused cel to fill");
-
-    const [boxPos, celPos] = focusedCel;
-
-    const partialConclusionCords = sudoku.current.conclusionChecking(boxPos-1, celPos-1).partialCompleted;
-
-    if (partialConclusionCords.length > 0) {
-      let parsedCordinates: number[][] = parsePartialConclusionCordinates(partialConclusionCords, boxPos, celPos);
-      setAnimationCordinates(parsedCordinates);
-    }
-  }
-
   /*public*/function deleteNumber(): void {
     if (!board || !focusedCel || !sudoku.current) return;
 
@@ -97,6 +84,19 @@ export function Controller() {
     sudoku.current.redo();
 
     setBoard(sudoku.current.board);
+  }
+  
+  /*private*/function mountCordsForPartialConclusionsAnimation(): void {
+    if (!focusedCel || !sudoku.current) throw new Error("No board or not focused cel to fill");
+
+    const [boxPos, celPos] = focusedCel;
+
+    const partialConclusionCords = sudoku.current.conclusionChecking(boxPos-1, celPos-1).partialCompleted;
+
+    if (partialConclusionCords.length > 0) {
+      let parsedCordinates: number[][] = parsePartialConclusionCordinates(partialConclusionCords, boxPos, celPos);
+      setAnimationCordinates(parsedCordinates);
+    }
   }
 
   /*public*/function resetAnimationCords(): void {

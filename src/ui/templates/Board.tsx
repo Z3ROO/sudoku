@@ -121,27 +121,24 @@ function isCelFocused(currentBoxPos: number, currentCelPos: number, focusedCel: 
     else
       return 1 //side focus for all celPoss in the boxPos
 
-  if (boxPos === 1 && [2,3,4,7].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 2 && [1,3,5,8].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 3 && [1,2,6,9].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 4 && [1,5,6,7].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 5 && [2,4,6,8].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 6 && [3,4,5,9].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 7 && [1,4,8,9].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 8 && [2,5,7,9].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
-    return 1
-  else if (boxPos === 9 && [3,6,7,8].includes(currentBoxPos) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel))
+  if (
+    (
+      boxPos === 1 && [2,3,4,7].includes(currentBoxPos) || 
+      boxPos === 2 && [1,3,5,8].includes(currentBoxPos) ||
+      boxPos === 3 && [1,2,6,9].includes(currentBoxPos) ||
+      boxPos === 4 && [1,5,6,7].includes(currentBoxPos) ||
+      boxPos === 5 && [2,4,6,8].includes(currentBoxPos) ||
+      boxPos === 6 && [3,4,5,9].includes(currentBoxPos) ||
+      boxPos === 7 && [1,4,8,9].includes(currentBoxPos) ||
+      boxPos === 8 && [2,5,7,9].includes(currentBoxPos) ||
+      boxPos === 9 && [3,6,7,8].includes(currentBoxPos)
+    ) && isPartOfCelAxisToHighlight(currentBoxPos, currentCelPos, focusedCel)
+  )
     return 1
 
   return 0 //no focus
 }
+
 function isPartOfCelAxisToHighlight(currentBoxPos: number, currentCelPos: number, focusedCel: number[]): boolean {
   const [boxPos, celPos] = focusedCel;
   let [celRow, celCol] = [[1,2,3],[1,4,7]];
@@ -166,18 +163,28 @@ function isPartOfCelAxisToHighlight(currentBoxPos: number, currentCelPos: number
   
   return false
 }
+
 function celAnimationOrder(currentBoxPos:number, currentCelPos: number, animationCordinates: number[][]): number {
-  if (animationCordinates === null) return 0
-  const celToAnimate = animationCordinates.find(([boxPos, celPos]) => boxPos === currentBoxPos-1 && celPos === currentCelPos-1)
+  if (animationCordinates === null) return 0;
+  const celToAnimate = animationCordinates.find(([boxPos, celPos]) => {
+      return boxPos === currentBoxPos-1 && celPos === currentCelPos-1
+    });
+      
   if (celToAnimate)
     return celToAnimate[2]
   
   return 0
 }
+
 function isAnimationFinished(currentBoxPos: number, currentCelPos: number, animationCordinates: number[][]) {
   const lastAnimation = animationCordinates.reduce((acc, val) => acc[2] < val[2] ? val : acc);
 
-  if (animationCordinates[animationCordinates.length - 1][0] === currentBoxPos-1 && animationCordinates[animationCordinates.length - 1][1] === currentCelPos-1) console.log(animationCordinates)
+  if (
+      animationCordinates[animationCordinates.length - 1][0] === currentBoxPos-1 && 
+      animationCordinates[animationCordinates.length - 1][1] === currentCelPos-1
+    ) 
+      console.log(animationCordinates)
+
   return lastAnimation[0] === currentBoxPos-1 && lastAnimation[1] === currentCelPos-1
 }
 
@@ -197,10 +204,18 @@ export function Box(props: BoxProps) {
 
   return  <Box_css id={'box-'+id}>
             {
-              [0,3,6].map((row, rowIndex) => <div key={rowIndex}>{
-                  [1,2,3].map((column,  columnIndex) => <Cel id={row+column} key={rowIndex+columnIndex} boxId={id} controller={controller} />)
-                }</div>
+              [0,3,6].map(
+                (row, rowIndex) => (
+                  <div key={rowIndex}>
+                    {
+                      [1,2,3].map((column,  columnIndex) => (
+                          <Cel id={row+column} key={rowIndex+columnIndex} boxId={id} controller={controller} />
+                        )
+                      )
+                    }
+                  </div>
                 )
+              )
             }         
           </Box_css>
 }
@@ -210,10 +225,19 @@ export function Grid(props: DefaultProps) {
 
   return  <Grid_css>
             {
-              [0,3,6].map((row, rowIndex) => <div key={rowIndex}>{
-                  [1,2,3].map((column,  columnIndex) => <Box id={row+column}  key={rowIndex+columnIndex} controller={controller} />)
-                }</div>
+              [0,3,6].map(
+                (row, rowIndex) => (
+                  <div key={rowIndex}>
+                    {
+                      [1,2,3].map(
+                        (column,  columnIndex) => (
+                          <Box id={row+column}  key={rowIndex+columnIndex} controller={controller} />
+                        )
+                      )
+                    }
+                  </div>
                 )
+              )
             }         
           </Grid_css>
 }
