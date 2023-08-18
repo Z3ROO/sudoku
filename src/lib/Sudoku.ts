@@ -165,9 +165,9 @@ export class Sudoku {
 
   #mountVerticalLine(parsedBoard: (number|null)[][], boxCord: number, celCord: number) {
     return [
-      ...parsedBoard[0+boxCord].filter( (cel, celIndex) => [0+celCord,3+celCord,6+celCord].includes(celIndex)), 
-      ...parsedBoard[3+boxCord].filter( (cel, celIndex) => [0+celCord,3+celCord,6+celCord].includes(celIndex)), 
-      ...parsedBoard[6+boxCord].filter( (cel, celIndex) => [0+celCord,3+celCord,6+celCord].includes(celIndex))
+      ...parsedBoard[0+boxCord].filter( (_cel, celIndex) => [0+celCord,3+celCord,6+celCord].includes(celIndex)), 
+      ...parsedBoard[3+boxCord].filter( (_cel, celIndex) => [0+celCord,3+celCord,6+celCord].includes(celIndex)), 
+      ...parsedBoard[6+boxCord].filter( (_cel, celIndex) => [0+celCord,3+celCord,6+celCord].includes(celIndex))
     ]
   }
 
